@@ -4,7 +4,7 @@ version = "0.1.1"
 description = "A simple helper to create and execute Cypher queries for Neo4j"
 authors = ["Trayan Azarov <trayan.azarov@amikos.tech>"]
 readme = "README.md"
-license = "LICENSE"
+license = "MIT"
 packages = [{ include = "cypher_ai_helper" }]
 
 [tool.poetry.dependencies]

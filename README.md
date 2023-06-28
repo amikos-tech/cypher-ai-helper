@@ -2,11 +2,21 @@
 
 A helper library for creating Cypher queries with OpenAI API.
 
+## Features
+
+- Create Cypher queries based on user data model and instructions (e.g. Insert new user, Create post and link it to the
+  publishing user)
+- Execute Cypher queries against Neo4j database
+- Attempt to resolve Cypher syntactic errors by feeding the exceptions back to OpenAI model for debugging purposes
+- Query caching (quite limited for now)
+
+> Note: For planned features please check the issues tab.
+
 ## Installation
 
 ```bash
 pip install cypher-ai-helper
-```
+```.
 
 ## Usage
 
@@ -77,3 +87,11 @@ _q = cypher_query("new-user", pydantic_models_to_str([User, Post]),
                                                                                           "pleaseletmein")),
                                          database="neo4j", params={"id": 2, "name": "post_user", "email": "test"}))
 ```
+
+## Examples
+
+Coming soon...
+
+## Similar Projects
+
+- [Langchain](https://github.com/hwchase17/langchain) - https://python.langchain.com/docs/modules/chains/additional/graph_cypher_qa

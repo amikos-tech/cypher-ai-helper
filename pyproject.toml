@@ -6,7 +6,9 @@ authors = ["Trayan Azarov <trayan.azarov@amikos.tech>"]
 readme = "README.md"
 license = "MIT"
 packages = [{ include = "cypher_ai_helper" }]
-
+include = ["README.md", "LICENSE",
+    { path = "infra/", format = ["sdist", "wheel"] }
+]
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/amikos-tech/cypher-ai-helper/issues"
 "Homepage" = "https://github.com/amikos-tech/cypher-ai-helper/"

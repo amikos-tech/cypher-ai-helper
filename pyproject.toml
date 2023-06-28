@@ -7,8 +7,13 @@ readme = "README.md"
 license = "MIT"
 packages = [{ include = "cypher_ai_helper" }]
 
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/amikos-tech/cypher-ai-helper/issues"
+"Homepage" = "https://github.com/amikos-tech/cypher-ai-helper/"
+"Source" = "https://github.com/amikos-tech/cypher-ai-helper/"
+
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.10"
 openai = "^0.27.8"
 neo4j = "^5.9.0"
 pydantic = "^1.10.9"
@@ -21,19 +26,11 @@ pytest-metadata = "^3.0.0"
 python-dotenv = "^1.0.0"
 
 
-#[[tool.poetry.source]]
-#name = "pypi"
-#url = "https://test.pypi.org/simple/"
-#priority = "default"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
-#[[tool.poetry.source]]
-#name = "PyPI"
-#url = "https://pypi.org/simple"
-#priority = "primary"
 
 [[tool.poetry.source]]
 name = "pypi-test"

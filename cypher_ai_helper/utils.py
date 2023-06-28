@@ -51,7 +51,7 @@ def pydantic_models_to_str(models: list[Union[BaseModel, Type[BaseModel]]]) -> s
     return '\n\n'.join([pydantic_model_to_str(model) for model in models])
 
 
-def class_definition_in_str_for_dataclasses(model: Any):
+def class_definition_in_str_for_dataclasses(model: Any) -> str:
     """
     Creates schema for dataclass
 
@@ -109,7 +109,7 @@ def extract_params(doc_str: str) -> dict[str, str]:
     return params
 
 
-def func_to_json(func):
+def func_to_json(func) -> dict[str, Any]:
     """
     Converts a function to a json schema for OpenAI
 

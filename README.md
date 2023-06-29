@@ -14,9 +14,17 @@ A helper library for creating Cypher queries with OpenAI API.
 
 ## Installation
 
+With pip:
+
 ```bash
 pip install cypher-ai-helper
-```.
+```
+
+With poetry:
+
+```bash
+poetry add cypher-ai-helper
+```
 
 ## Usage
 

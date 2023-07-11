@@ -113,10 +113,15 @@ def cypher_query(query_id: str, schema: str, instruction: str, input_vars: list[
 
     if overwrite_cache:
         del query_cache[query_id]
-
+    _result_query = None
     if query_id in query_cache:
         logger.debug(f"Returning cached query for {query_id}")
-        return query_cache[query_id]
+        _result_query = query_cache[query_id]
+
+    if _result_query is not None and func:
+        return _result_query, func(query=_result_query)
+    elif _result_query is not None:
+        return _result_query, None
 
     with open(os.path.join(curdir, "system_prompt"), "r") as f:
         _system_prompt = f.read()
@@ -135,7 +140,9 @@ def cypher_query(query_id: str, schema: str, instruction: str, input_vars: list[
     _response_message = _send_chat_messages(_messages, _model=model, functions=_functions)
     _messages.append(json.loads(json.dumps(_response_message, ensure_ascii=False)))
     logger.debug(f"Messages: {_messages}")
+    _result_query = _response_message["content"]
     _follow_up_messages = _messages
+    query_cache[query_id] = _result_query
     if func:
         _new_messages = []
         _functions = [func_to_json(func)]
@@ -143,7 +150,7 @@ def cypher_query(query_id: str, schema: str, instruction: str, input_vars: list[
         _new_messages.append(
             {
                 "role": "user",
-                "content": f"Execute the the following query: {_response_message['content']}\n\n"
+                "content": f"Execute the the following query: {_result_query}\n\n"
                            f"Do not attempt to generate values for placeholders, just execute the query as is.",
             }
         )
@@ -183,5 +190,4 @@ def cypher_query(query_id: str, schema: str, instruction: str, input_vars: list[
 
     logger.debug(f"Messages: {_follow_up_messages}")
     logger.debug(f"LLM Query Response: {_response_message}")
-    query_cache[query_id] = _response_message["content"]
     return _response_message["content"], None

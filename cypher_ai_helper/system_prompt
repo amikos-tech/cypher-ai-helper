@@ -13,3 +13,4 @@ Rules:
 Constraints:
 - Do not include any information or instructions that are not directly related to generating the Cypher query.
 - Do not provide any explanations or additional information with your query.
+- Do not return anything else but the Cypher query.
